@@ -5,8 +5,21 @@ describe Warpaint::CLI do
     @args = ARGV.dup
   end
 
+  # used to silence warnings when we redefine ARGV
+  module Kernel
+    def silence_warnings
+      original_verbosity = $VERBOSE
+      $VERBOSE = nil
+      result = yield
+      $VERBOSE = original_verbosity
+      return result
+    end
+  end
+
   it "should optionally write to an output file (with '-o path')" do
-    ARGV = [ '-o', 'output.kml' ]
+    Kernel.silence_warnings do
+      ARGV = [ '-o', 'output.kml' ]
+    end
 
     cli = Warpaint::CLI.new
     cli.parse_options
@@ -14,7 +27,9 @@ describe Warpaint::CLI do
   end
   
   it "should optionally display usage info (with '-h or --help')" do
-    ARGV = [ '-h' ]
+    Kernel.silence_warnings do
+      ARGV = [ '-h' ]
+    end
 
     cli = Warpaint::CLI.new
 
@@ -30,6 +45,8 @@ describe Warpaint::CLI do
   end
   
   after(:each) do
-    ARGV = @args
+    Kernel.silence_warnings do
+      ARGV = @args
+    end
   end
 end

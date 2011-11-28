@@ -1,13 +1,9 @@
+require "warpaint/parser"
 require "nokogiri"
 require "time"
 
 module Warpaint
-  class NetXML
-    def initialize(input_file)
-      raise "File not found: #{input_file}" unless File.exists? input_file
-      @input_file = input_file
-    end
-    
+  class NetXML < Warpaint::Parser
     def parse_into(struct)
       File.open(@input_file) do |f|
         doc = Nokogiri::XML(f)
@@ -19,7 +15,7 @@ module Warpaint
           ssid = net.xpath("SSID/essid[@cloaked='false']")
           if !ssid.empty?
             essid = ssid.children.to_s
-            struct.add_wireless_network(:last_time => last_time, :essid => essid, :encryption => encryption)
+            struct.add_wireless_network(:last_time => Time.parse(last_time), :essid => essid, :encryption => encryption)
           end
         end
       end
