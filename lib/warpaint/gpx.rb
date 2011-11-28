@@ -1,4 +1,6 @@
 require "warpaint/parser"
+require "nokogiri"
+require "time"
 
 module Warpaint
   class GPX < Warpaint::Parser    
