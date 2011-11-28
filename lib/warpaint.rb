@@ -1,3 +1,5 @@
+require "warpaint/version"
+
 # * {Warpaint::CLI} handles the parsing of the command line.
 # * {Warpaint::Parser} provides generic parer functionality.
 # * {Warpaint::NetXML} handles the parsing of the Kismet NetXML.

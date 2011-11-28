@@ -9,9 +9,17 @@ Here's an example screenshot from Google Earth after importing a KML file built 
 
 <a target='_blank' title='Google Earth Thumbnail' href='http://yfrog.com/oep1up'><img src='http://a.yfrog.com/img878/2213/p1u.th.png' border='0'/></a>
 
+## Dependencies
+
+Warpaint depends on the schleyfox-ruby_kml gem which exists on GitHub and not Rubyforge. Assuming you have ruby and rubygems, install it like so:
+
+```sh
+gem install schleyfox-ruby_kml --source http://gems.github.com
+```
+
 ## Installation
 
-It's just a gem. Assuming you have ruby and rubygems installed:
+Warpaint is itself a gem. Install it with:
 
 ```sh
 gem install warpaint
