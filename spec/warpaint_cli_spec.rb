@@ -40,6 +40,8 @@ describe Warpaint::CLI do
     lambda { cli.parse_options }.should raise_error SystemExit
     trapped_output.string.should match /-o, --out OUTPUT\s+The output file \(\.KML\) to write/
     trapped_output.string.should match /-h, --help\s+Show this message/
+    trapped_output.string.should match /-n NETXML_TIME_ADJUSTMENT,\s+Adjust the timestamps in NetXML file by seconds \(can be negative\)/
+    trapped_output.string.should match /-g, --gtime GPX_TIME_ADJUSTMENT\s+Adjust the timestamps in GPX file by seconds \(can be negative\)/
 
     $stdout = stdout
   end
