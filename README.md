@@ -29,8 +29,8 @@ This will write to a file in KML format that you can now import into Google Eart
 
 ## Contribute
 
-This project is hosted on (github)[http://github.com/rboyd/warpaint]. You should open an issue there to report any bugs or send a pull request with any cool new features you've added.
+This project is hosted on [github](http://github.com/rboyd/warpaint). You should open an issue there to report any bugs or send a pull request with any cool new features you've added.
 
 # Play nice
 
-Check with your local law-enforcement agency and ethics professor before doing anything crazy. Whatever happens, don't blame (me)[http://twitter.com/rboyd]!
+Check with your local law-enforcement agency and ethics professor before doing anything crazy. Whatever happens, don't blame [me](http://twitter.com/rboyd)!
