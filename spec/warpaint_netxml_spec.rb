@@ -1,7 +1,7 @@
 require "warpaint/netxml"
 
 describe Warpaint::NetXML do
-  it "should parse the file into a given data stucture" do
+  it "should parse a Kismet log (.NetXML) file into a given data stucture" do
     parser = Warpaint::NetXML.new('spec/data/Kismet-20111124-01-56-22-1.netxml')
     struct = double()
     

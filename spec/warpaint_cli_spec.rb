@@ -44,6 +44,16 @@ describe Warpaint::CLI do
     $stdout = stdout
   end
   
+  it "should optionally allow specification of time adjustment for network entries" do
+    Kernel.silence_warnings do
+      ARGV = [ '--ntime', '3600' ]
+    end
+
+    cli = Warpaint::CLI.new
+    cli.parse_options
+    cli.config[:adjust_netxml_time].should == "3600"
+  end
+  
   after(:each) do
     Kernel.silence_warnings do
       ARGV = @args

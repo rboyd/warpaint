@@ -1,7 +1,7 @@
 require "warpaint/gpx"
 
 describe Warpaint::GPX do
-  it "should parse the file into a given data stucture" do
+  it "should parse a GPS eXchange Format (.GPX) file into a given data stucture" do
     parser = Warpaint::GPX.new('spec/data/2011-11-23 21-06-20.gpx')
     struct = double()
 

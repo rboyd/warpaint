@@ -3,4 +3,39 @@
 require File.dirname(__FILE__) + '/../lib/warpaint'
 
 cli = Warpaint::CLI.new
+cli.banner = "Usage: #{$0} <kismetfile.netxml> <coordinates.gpx> (options) [options: invoke with --help]"
+
 opt = cli.parse_options
+
+kismet_file = ARGV[0]
+gpx_file = ARGV[1]
+
+if ARGV.size < 2
+  puts cli.banner
+  exit
+end
+
+# parse Kismet NetXML file
+netxml_time_adjustment = cli.config[:adjust_network_time].nil? ? 0 : cli.config[:adjust_network_time].to_i
+networks = Warpaint::NetworkCollection.new(netxml_time_adjustment)
+netxml = Warpaint::NetXML.new(kismet_file)
+netxml.parse_into(networks)
+
+# parse GPX file
+gpx_time_adjustment = cli.config[:adjust_gpx_time].nil? ? 0 : cli.config[:adjust_gpx_time].to_i
+track_points = Warpaint::PointCollection.new(gpx_time_adjustment)
+gpx = Warpaint::GPX.new(gpx_file)
+gpx.parse_into(track_points)
+
+# render output
+renderer = Warpaint::Renderer.new(networks, track_points)
+
+output_file = cli.config[:output_file]
+
+if output_file.nil?
+  renderer.render_to(STDOUT) if output_file.nil?
+else
+  File.open(output_file, "w+") do |f|
+    renderer.render_to(f)
+  end
+end
